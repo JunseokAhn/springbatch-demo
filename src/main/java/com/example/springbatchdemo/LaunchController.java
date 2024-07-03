@@ -1,4 +1,4 @@
-package com.example.springbatchdemo.controller;
+package com.example.springbatchdemo;
 
 import org.springframework.batch.core.launch.JobOperator;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,15 +1,21 @@
 /**
  *
  */
-package com.example.springbatchdemo;
+package com.example.springbatchdemo.chunkExample;
 
+import org.springframework.batch.item.ExecutionContext;
 import org.springframework.batch.item.support.AbstractItemStreamItemReader;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ChunkItemReader<T> extends AbstractItemStreamItemReader<Integer> {
+public class ItemReader<T> extends AbstractItemStreamItemReader<Integer> {
 
     static int num = 0;
+
+    @Override
+    public void open(ExecutionContext executionContext) {
+        super.open(executionContext);
+    }
 
     @Override
     public Integer read() {

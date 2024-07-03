@@ -1,7 +1,6 @@
-package com.example.springbatchdemo.config;
+package com.example.springbatchdemo.batchExample;
 
-import com.example.springbatchdemo.listener.JobListener;
-import com.example.springbatchdemo.listener.StepListener;
+import com.example.springbatchdemo.chunkExample.StepListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -18,7 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Slf4j
 @Component
 @EnableBatchProcessing
-public class BatchJobConfig {
+public class JobConfig {
 
     @Autowired
     private JobRepository jobRepository;

@@ -1,11 +1,11 @@
-package com.example.springbatchdemo;
+package com.example.springbatchdemo.chunkExample;
 
 import org.springframework.batch.item.Chunk;
 import org.springframework.batch.item.support.AbstractItemStreamItemWriter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ChunkItemWriter<T> extends AbstractItemStreamItemWriter<T> {
+public class ItemWriter<T> extends AbstractItemStreamItemWriter<T> {
 
     @Override
     public void write(Chunk<? extends T> chunk) throws Exception {

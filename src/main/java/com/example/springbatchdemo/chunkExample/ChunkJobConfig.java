@@ -1,10 +1,6 @@
-package com.example.springbatchdemo.config;
+package com.example.springbatchdemo.chunkExample;
 
-import com.example.springbatchdemo.ChunkItemProcessor;
-import com.example.springbatchdemo.ChunkItemReader;
-import com.example.springbatchdemo.ChunkItemWriter;
-import com.example.springbatchdemo.listener.ChunkListener;
-import com.example.springbatchdemo.listener.JobListener;
+import com.example.springbatchdemo.batchExample.JobListener;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -14,8 +10,6 @@ import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.task.SimpleAsyncTaskExecutor;
-import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -37,13 +31,13 @@ public class ChunkJobConfig {
     private ChunkListener chunkListener;
 
     @Autowired
-    private ChunkItemReader<?> itemReader;
+    private ItemReader<?> itemReader;
 
     @Autowired
-    private ChunkItemProcessor itemProcessor;
+    private ItemProcessor itemProcessor;
 
     @Autowired
-    private ChunkItemWriter itemWriter;
+    private ItemWriter itemWriter;
 
     @Bean("chunkJob")
     public Job chunkJob() {
@@ -59,14 +53,10 @@ public class ChunkJobConfig {
                 .reader(itemReader)
                 .processor(itemProcessor) // reader에서 null반환할때까지 무한반복호출
                 .writer(itemWriter)
-//                .taskExecutor(taskExecutor())
                 .listener(chunkListener)
                 .build();
+
+
     }
 
-    private TaskExecutor taskExecutor() {
-        SimpleAsyncTaskExecutor asyncExecutor = new SimpleAsyncTaskExecutor("multi-processing");
-        asyncExecutor.setConcurrencyLimit(10); // 병렬처리 동시 10개
-        return asyncExecutor;
-    }
 }
