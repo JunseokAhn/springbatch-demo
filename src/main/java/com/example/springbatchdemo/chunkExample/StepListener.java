@@ -6,8 +6,8 @@ import org.springframework.batch.core.StepExecution;
 import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.stereotype.Component;
 
-@Component
 @Slf4j
+@Component("ChunkStepListener")
 public class StepListener implements StepExecutionListener {
 
     @Override

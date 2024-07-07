@@ -4,18 +4,14 @@
 package com.example.springbatchdemo.chunkExample;
 
 import org.springframework.batch.item.ExecutionContext;
+import org.springframework.batch.item.ItemStream;
 import org.springframework.batch.item.support.AbstractItemStreamItemReader;
 import org.springframework.stereotype.Component;
 
-@Component
-public class ItemReader<T> extends AbstractItemStreamItemReader<Integer> {
+@Component("ChunkItemReader")
+public class ItemReader<T> implements org.springframework.batch.item.ItemReader<Integer>, ItemStream {
 
-    static int num = 0;
-
-    @Override
-    public void open(ExecutionContext executionContext) {
-        super.open(executionContext);
-    }
+    int num = 0;
 
     @Override
     public Integer read() {

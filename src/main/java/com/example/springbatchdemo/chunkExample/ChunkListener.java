@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.scope.context.ChunkContext;
 import org.springframework.stereotype.Component;
 
-@Component
 @Slf4j
+@Component("ChunkListener")
 public class ChunkListener implements org.springframework.batch.core.ChunkListener {
 
     @Override
@@ -20,7 +20,5 @@ public class ChunkListener implements org.springframework.batch.core.ChunkListen
     public void afterChunk(ChunkContext context) {
         log.info("afterChunk : {}, loop {}", context.getStepContext().getStepName(), context.getStepContext().getStepExecution().getReadCount());
     }
-    @Override
-    public void afterChunkError(ChunkContext context) {
-    }
+
 }

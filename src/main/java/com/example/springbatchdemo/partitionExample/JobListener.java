@@ -5,7 +5,7 @@ import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("PartitionJobListener")
 public class JobListener implements JobExecutionListener {
 
     @Override

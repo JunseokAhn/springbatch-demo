@@ -5,7 +5,7 @@ import org.springframework.batch.item.ItemStream;
 import org.springframework.batch.item.ItemStreamException;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("PartitionItemReader")
 public class ItemReader implements org.springframework.batch.item.ItemReader<Integer>, ItemStream {
 
     private int currentIndex;

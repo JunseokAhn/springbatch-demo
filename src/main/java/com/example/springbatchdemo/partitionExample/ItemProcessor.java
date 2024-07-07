@@ -2,7 +2,7 @@ package com.example.springbatchdemo.partitionExample;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("PartitionItemProcessor")
 public class ItemProcessor implements org.springframework.batch.item.ItemProcessor<Integer, Integer> {
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.springbatchdemo.batchExample;
 
 import com.example.springbatchdemo.chunkExample.StepListener;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -9,27 +10,23 @@ import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.repeat.RepeatStatus;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Slf4j
-@Component
+@Component("BatchJobConfig")
 @EnableBatchProcessing
+@RequiredArgsConstructor
 public class JobConfig {
 
-    @Autowired
-    private JobRepository jobRepository;
+    private final JobRepository jobRepository;
 
-    @Autowired
-    private PlatformTransactionManager transactionManager;
+    private final PlatformTransactionManager transactionManager;
 
-    @Autowired
-    private JobListener jobListener;
+    private final JobListener jobListener;
 
-    @Autowired
-    private StepListener stepListener;
+    private final StepListener stepListener;
 
     @Bean("batchJob")
     public Job batchJob() {

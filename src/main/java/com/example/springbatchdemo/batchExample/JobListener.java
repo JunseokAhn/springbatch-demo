@@ -6,8 +6,8 @@ import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.stereotype.Component;
 
-@Component
 @Slf4j
+@Component("BatchJobListener")
 public class JobListener implements JobExecutionListener {
 
     @Override

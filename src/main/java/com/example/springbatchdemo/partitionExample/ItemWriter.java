@@ -3,7 +3,7 @@ package com.example.springbatchdemo.partitionExample;
 import org.springframework.batch.item.*;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("PartitionItemWriter")
 public class ItemWriter implements org.springframework.batch.item.ItemWriter<Integer>, ItemStream {
 
     private ExecutionContext executionContext;

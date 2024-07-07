@@ -1,6 +1,6 @@
 package com.example.springbatchdemo.chunkExample;
 
-import com.example.springbatchdemo.batchExample.JobListener;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -8,41 +8,32 @@ import org.springframework.batch.core.configuration.annotation.EnableBatchProces
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 
-@Component
 @Slf4j
+@Component("ChunkJobConfig")
 @EnableBatchProcessing
-public class ChunkJobConfig {
+@RequiredArgsConstructor
+public class JobConfig {
 
-    @Autowired
-    private JobRepository jobRepository;
+    private final JobRepository jobRepository;
 
-    @Autowired
-    private PlatformTransactionManager transactionManager;
+    private final PlatformTransactionManager transactionManager;
 
-    @Autowired
-    private JobListener jobListener;
+    private final ChunkListener chunkListener;
 
-    @Autowired
-    private ChunkListener chunkListener;
+    private final ItemReader itemReader;
 
-    @Autowired
-    private ItemReader<?> itemReader;
+    private final ItemProcessor itemProcessor;
 
-    @Autowired
-    private ItemProcessor itemProcessor;
-
-    @Autowired
-    private ItemWriter itemWriter;
+    private final ItemWriter itemWriter;
 
     @Bean("chunkJob")
     public Job chunkJob() {
         return new JobBuilder("chunkJob", jobRepository)
-                .listener(jobListener)
+//                .listener(jobListener)
                 .start(chunkStep())
                 .build();
     }

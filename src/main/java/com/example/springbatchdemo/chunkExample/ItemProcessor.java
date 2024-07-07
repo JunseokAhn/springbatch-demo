@@ -2,7 +2,7 @@ package com.example.springbatchdemo.chunkExample;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("ChunkItemProcessor")
 public class ItemProcessor implements org.springframework.batch.item.ItemProcessor<Integer, Integer> {
 
     int num = 0;
